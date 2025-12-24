@@ -13,7 +13,7 @@ test:
 
 production:
   <<: *default
-  # Rails 8 用：全ての役割を 1 つの DATABASE_URL に集約するマルチDB設定
+  # ここから下のインデントが非常に重要です
   databases:
     primary:
       url: <%= ENV['DATABASE_URL'] %>
