@@ -15,9 +15,9 @@ gem "jbuilder"
 # ここが重要
 gem "thruster"
 gem "image_processing", "~> 1.2"
-gem "solid_cache"
-gem "solid_queue"  # ← 追加
-gem "solid_cable"  # ← 追加
+# gem "solid_cache"
+# gem "solid_queue"  # ← 追加
+# gem "solid_cable"  # ← 追加
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
