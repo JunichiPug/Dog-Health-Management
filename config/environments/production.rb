@@ -13,7 +13,7 @@ Rails.application.configure do
   config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
 
   # =====================================================================
-  # ログ設定（Renderのログで見やすくするために重要）
+  # ログ設定
   # =====================================================================
   config.log_tags = [ :request_id ]
   config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
@@ -21,26 +21,33 @@ Rails.application.configure do
   config.silence_healthcheck_path = "/up"
 
   # =====================================================================
-  # ホスト許可（Renderでの「Timed out」を防ぐ最重要設定）
+  # ホスト許可（Render用設定）
   # =====================================================================
-  # 全ての .onrender.com ドメインからのアクセスを許可
   config.hosts << ".onrender.com"
-  # ヘルスチェックパス（/up）をホストチェックから除外
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   # =====================================================================
-  # Solid 関連の設定（Rails 8 標準）
+  # Solid 関連の設定（安全な呼び出し方に修正）
   # =====================================================================
-  # キャッシュ: Gemfileに合わせてSolid Cacheを使用
+  # キャッシュ
   config.cache_store = :solid_cache_store
 
-  # 非同期処理: Solid Queueを使用
+  # 非同期処理
   config.active_job.queue_adapter = :solid_queue
 
-  # データベース接続先の設定（database.ymlと連動）
-  config.solid_cache.connects_to = { database: { writing: :cache } }
-  config.solid_queue.connects_to = { database: { writing: :queue } }
-  config.solid_cable.connects_to = { database: { writing: :cable } }
+  # データベース接続先の設定
+  # ビルド時のエラーを避けるため、respond_to? でチェックします
+  if config.respond_to?(:solid_cache)
+    config.solid_cache.connects_to = { database: { writing: :cache } }
+  end
+
+  if config.respond_to?(:solid_queue)
+    config.solid_queue.connects_to = { database: { writing: :queue } }
+  end
+
+  if config.respond_to?(:solid_cable)
+    config.solid_cable.connects_to = { database: { writing: :cable } }
+  end
 
   # =====================================================================
   # その他の設定
@@ -51,9 +58,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.active_record.attributes_for_inspect = [ :id ]
 
-  # SSL（Render側でSSL化されるため一旦コメントアウトしていますが、本番運用ではtrue推奨）
-  # config.force_ssl = true
-
-  # メーラー設定（必要に応じて host を変更してください）
+  # メーラー設定
   config.action_mailer.default_url_options = { host: "dog-health-management.onrender.com" }
 end
