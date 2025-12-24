@@ -12,6 +12,8 @@ gem "cssbundling-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
+gem "thruster"
+gem "image_processing", "~> 1.2"
 # Gemfile
 gem "solid_cache"
 # Windows does not include zoneinfo files
