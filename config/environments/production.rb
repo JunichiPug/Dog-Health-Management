@@ -22,13 +22,15 @@ Rails.application.configure do
   config.cache_store = :solid_cache_store
   config.active_job.queue_adapter = :solid_queue
 
-  # データベース接続先の設定（database.yml のキーと合わせる）
+  # データベース接続先の設定（database.yml のキー名と合わせる）
   if config.respond_to?(:solid_cache)
     config.solid_cache.connects_to = { database: :cache }
   end
+
   if config.respond_to?(:solid_queue)
     config.solid_queue.connects_to = { database: :queue }
   end
+
   if config.respond_to?(:solid_cable)
     config.solid_cable.connects_to = { database: :cable }
   end

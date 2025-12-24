@@ -13,8 +13,7 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
-  # Rails 8のSolid系機能（Cache, Queue, Cable）を1つのDBで共有する設定
+  # Rails 8 用：全ての役割を 1 つの DATABASE_URL に集約するマルチDB設定
   databases:
     primary:
       url: <%= ENV['DATABASE_URL'] %>
