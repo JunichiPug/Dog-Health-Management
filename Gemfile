@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.3.10"
+ruby "3.3.6"
 
 gem "rails", "~> 8.1.1"
 gem "bootsnap", require: false
