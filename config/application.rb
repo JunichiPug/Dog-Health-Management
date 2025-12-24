@@ -2,7 +2,7 @@ require_relative "boot"
 
 require "rails/all"
 
-# Rails 8 の新機能を強制的に読み込み、ビルドエラーを防止する
+# Rails 8 の新機能を強制的にロードし、ビルドエラーを防ぐ
 require "solid_cable/engine"
 require "solid_cache/engine"
 require "solid_queue/engine"

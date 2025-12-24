@@ -18,7 +18,7 @@ Rails.application.configure do
   config.hosts << ".onrender.com"
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
-  # Solid関連（respond_to? を使って、準備ができている時だけ設定するよう修正）
+  # Solid関連（respond_to? を使い、準備ができている時だけ設定するよう修正）
   config.cache_store = :solid_cache_store
   config.active_job.queue_adapter = :solid_queue
 
