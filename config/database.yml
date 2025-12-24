@@ -3,14 +3,14 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+development:
+  <<: *default
+  database: myapp_development
+
+test:
+  <<: *default
+  database: myapp_test
+
 production:
   <<: *default
-  databases:
-    primary:
-      url: <%= ENV['DATABASE_URL'] %>
-    cache:
-      url: <%= ENV['DATABASE_URL'] %>
-    queue:
-      url: <%= ENV['DATABASE_URL'] %>
-    cable:
-      url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV['DATABASE_URL'] %>
