@@ -93,4 +93,5 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 80
-CMD ["./bin/thrust", "./bin/rails", "server"]
+# 既存の CMD 行を消して、以下に書き換えます
+CMD ["sh", "-c", "./bin/rails db:prepare && ./bin/rails server -b 0.0.0.0 -p 10000"]
