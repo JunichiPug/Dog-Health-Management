@@ -18,18 +18,19 @@ Rails.application.configure do
   config.hosts << ".onrender.com"
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
-  # Solid関連（respond_to? を使い、準備ができている時だけ設定するよう修正）
+  # Solid 関連の設定
   config.cache_store = :solid_cache_store
   config.active_job.queue_adapter = :solid_queue
 
+  # データベース接続先の設定（database.yml のキーと合わせる）
   if config.respond_to?(:solid_cache)
-    config.solid_cache.connects_to = { database: { writing: :cache } }
+    config.solid_cache.connects_to = { database: :cache }
   end
   if config.respond_to?(:solid_queue)
-    config.solid_queue.connects_to = { database: { writing: :queue } }
+    config.solid_queue.connects_to = { database: :queue }
   end
   if config.respond_to?(:solid_cable)
-    config.solid_cable.connects_to = { database: { writing: :cable } }
+    config.solid_cable.connects_to = { database: :cable }
   end
 
   # その他
