@@ -1,0 +1,9 @@
+@import "tailwindcss";
+.top-image {
+  display: block;
+  margin: 20px auto; /* 中央寄せ */
+  width: 1300px;      /* 好きな幅に調整 */
+  max-width: 80%;    /* 画面が小さい場合は縮小 */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}

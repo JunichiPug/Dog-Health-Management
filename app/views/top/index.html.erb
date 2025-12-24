@@ -1,0 +1,41 @@
+<div class="text-center mt-10 bg-pink-100 min-h-screen">
+  <h1 class="text-7xl font-bold text-pink-400" style="font-family: 'Pacifico', cursive;">
+    わんこの健康管理 🐶
+  </h1>
+
+ <p style="font-size: 48px;">Dogs are family</p>
+
+  <img src="/2O8A1388.JPG" alt="犬の写真" class="top-image">
+
+  <p class="caption text-2xl mt-2">私たちの大切な家族です</p>
+
+ <!-- ボタン群 -->
+  <div class="flex justify-center gap-13 mt-6">
+  <%= form_with url: meals_path, method: :post, local: true do |f| %>
+    <%= hidden_field_tag :name, "ごはん" %>
+    <%= f.submit "ごはん", class: "bg-pink-400 text-white px-7 py-4 rounded" %>
+  <% end %>
+
+  <%= form_with url: meals_path, method: :post, local: true do |f| %>
+    <%= hidden_field_tag :name, "おしっこ" %>
+    <%= f.submit "おしっこ", class: "bg-pink-400 text-white px-7 py-4 rounded" %>
+  <% end %>
+
+  <%= form_with url: meals_path, method: :post, local: true do |f| %>
+    <%= hidden_field_tag :name, "うんち" %>
+    <%= f.submit "うんち", class: "bg-pink-400 text-white px-7 py-4 rounded" %>
+  <% end %>
+
+  <%= form_with url: meals_path, method: :post, local: true do |f| %>
+    <%= hidden_field_tag :name, "嘔吐" %>
+    <%= f.submit "嘔吐", class: "bg-pink-400 text-white px-7 py-4 rounded" %>
+  <% end %>
+</div>
+
+<div class="mt-8 text-center">
+  <%= link_to "記録一覧", meals_path, class: "bg-pink-400 text-white px-4 py-2 rounded text-lg hover:bg-pink-500" %>
+</div>
+
+
+</div>
+

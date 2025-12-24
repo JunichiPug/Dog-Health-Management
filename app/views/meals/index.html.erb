@@ -1,0 +1,43 @@
+<div class="text-center bg-pink-100 min-h-screen py-10">
+
+  <h2 class="text-5xl font-bold text-pink-400 mb-6">記録一覧</h2>
+
+  <%= form_with url: update_all_meals_path, method: :patch, local: true do |f| %>
+    <table class="table-auto mx-auto border-collapse border border-gray-300">
+      <thead>
+        <tr class="bg-pink-200">
+          <th class="border px-4 py-2">時間</th>
+          <th class="border px-4 py-2">内容</th>
+          <th class="border px-4 py-2">備考</th>
+          <th class="border px-4 py-2">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @meals.each do |meal| %>
+          <tr>
+            <td class="border px-4 py-2"><%= meal.eaten_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+            <td class="border px-4 py-2"><%= meal.name %></td>
+            <td class="border px-4 py-2">
+              <%= hidden_field_tag "meals[][id]", meal.id %>
+              <%= text_field_tag "meals[][note]", meal.note, class: "border px-2 py-1 w-80" %>
+            </td>
+
+            <td class="border px-4 py-2">
+              <%= link_to "削除", meal_path(meal), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "bg-red-400 text-white px-2 py-1 rounded inline-block" %>
+            </td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="mt-4">
+      <%= f.submit "備考欄の保存", class: "bg-pink-400 text-white px-15 py-2 rounded" %>
+    </div>
+  <% end %>
+
+  <div class="mt-6 text-lg">
+    <%= link_to "トップページに戻る", root_path, class: "text-pink-400 hover:underline" %>
+  </div>
+
+</div>
