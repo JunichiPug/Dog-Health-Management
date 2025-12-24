@@ -1,8 +1,10 @@
-#!/bin/bash -e
+#!/bin/bash
+set -e
 
-# If running the rails server then create or migrate existing database
-if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
+# Railsサーバーを起動する場合のみ、データベースの準備（作成・マイグレーション）を実行
+if [[ "$*" == *"./bin/rails server"* ]]; then
   ./bin/rails db:prepare
 fi
 
-exec "${@}"
+# DockerfileのCMD（./bin/thrust ...）を実行
+exec "$@"
