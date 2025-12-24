@@ -12,7 +12,8 @@ gem "cssbundling-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
-
+# Gemfile
+gem "solid_cache"
 # Windows does not include zoneinfo files
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
